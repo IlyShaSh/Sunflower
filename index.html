@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8">
+<meta content="assets/img/icon.jpg" property="og:image">
+<meta content="Помогает концентрироваться на работе" property="og:description">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport" content="minimal-ui">
+<meta http-equiv="cleartype" content="on">
+
+<title>Sunflower</title>
+
+<link href="assets\css\likely.css" rel="stylesheet" type="text/css">
+<link href="assets\css\styles.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+<link href="assets\img\work.ico" rel="icon" type="image/x-icon">
+    </head>
+
+    <body>
+        <section id="sunflower">
+<h1 class="pa-title">
+    Sunflower
+</h1>
+
+<div class="pa-skip">
+    <span>Пропустить подсолнух</span>
+</div>
+
+<button class="pa-settings-button">Настройки</button>
+<div class="pa-settings hidden">
+    <ul>
+
+        <li class="clearfix">
+Время работы<div class="pa-control" data-type="number">
+    <span class="minus">&minus;</span>
+    <span class="pa-cell">
+        <input class="time" type="text" maxlength="2" data-type="number">
+        мин    </span>
+    <span class="plus">+</span>
+</div>        </li>
+
+        <li class="clearfix">
+Маленький перерыв<div class="pa-control" data-type="number">
+    <span class="minus">&minus;</span>
+    <span class="pa-cell">
+        <input class="shortBreak" type="text" maxlength="2" data-type="number">
+        мин    </span>
+    <span class="plus">+</span>
+</div>        </li>
+
+        <li class="clearfix">
+Большой перерыв<div class="pa-control" data-type="number">
+    <span class="minus">&minus;</span>
+    <span class="pa-cell">
+        <input class="longBreak" type="text" maxlength="2" data-type="number">
+        мин    </span>
+    <span class="plus">+</span>
+</div>        </li>
+
+        <li class="clearfix separator">
+Подсолнухов в раунде<div class="pa-control pa-full-control" data-type="number">
+    <span class="minus">&minus;</span>
+    <span class="pa-cell">
+        <input class="round" type="text" maxlength="2" data-type="number">
+    </span>
+    <span class="plus">+</span>
+</div>        </li>
+
+        <li class="clearfix">
+Подсолнухов за день<div class="pa-control pa-full-control" data-type="number">
+    <span class="minus">&minus;</span>
+    <span class="pa-cell">
+        <input class="total" type="text" maxlength="2" data-type="number">
+    </span>
+    <span class="plus">+</span>
+</div>        </li>
+<!-- 
+        <li class="clearfix separator">
+Звуковое уведомление<div class="pa-bool pa-bool-on" data-type="bool">
+    <span class="pa-switch-on">Вкл</span>
+    <span class="pa-switch-off">Выкл</span>
+    <input class="sound" type="checkbox" style="display: none" data-type="bool">
+</div>        </li> -->
+<!-- 
+        <li class="clearfix">
+Тиканье таймера<div class="pa-bool pa-bool-on" data-type="bool">
+    <span class="pa-switch-on">Вкл</span>
+    <span class="pa-switch-off">Выкл</span>
+    <input class="tick" type="checkbox" style="display: none" data-type="bool">
+</div>        </li> -->
+<!-- 
+        <li class="clearfix separator">
+Уведомления<div class="pa-bool pa-bool-on" data-type="bool">
+    <span class="pa-switch-on">Вкл</span>
+    <span class="pa-switch-off">Выкл</span>
+    <input class="notifications" type="checkbox" style="display: none" data-type="bool">
+</div>        </li> -->
+
+    </ul>
+</div>
+
+<div class="pa-timer">
+    <div class="pa-timer-time">
+        <span class="pa-min">00</span>
+        <span class="pa-colon">:</span>
+        <span class="pa-sec">00</span>
+    </div>
+
+    <div class="pa-timer-scale">
+        <div class="pa-timer-wrapper">
+            <img srcset="assets\img\scale.png 1x, assets\img\scale@2x.png 2x" src="assets\img\scale.png" alt="Шкала времени">
+        </div>
+    </div>
+
+    <div class="pa-timer-control pa-play">
+        <span class="pa-icon pa-play"></span>
+    </div>
+</div>
+
+<div class="pa-goals">
+    <span class="pa-current">0</span> из
+    <span class="pa-total">0</span> подсолнухов
+    <span class="pa-status hidden"></span>
+</div>
+
+        </section>
+
+<script src="assets\js\main.js" type="text/javascript"></script>
+<script src="assets\js\likely.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var components = pomidorko.components,
+        dom        = pomidorko.dom;
+
+    pomidorko.bootstrap.reset();
+
+    var container = dom.find('#sunflower'),
+        timer     = new pomidorko.Timer,
+        data      = pomidorko.bootstrap(pomidorko.config);
+
+    var settings = data.settings,
+        goals    = data.goals;
+
+    pomidorko.lang.set({"phrases":["Так держать!","Отлично!","Супер!","День прожит не зря!","Вау, молодец!","Теперь можно посмотреть любимый сериал","Ого, так много помидорок сегодня еще никто не отрабатывал. Поздравляю!","Горжусь тобой!"],"recess":"Перерыв","title":"подсолнуховый таймер","work":"Работа","skip":["Пропустить подсолнух","Пропустить перерыв"],"pomidorko":"Sunflower"});
+
+    var services = [
+        new components.PlayPause(dom.find('.pa-timer-control'), timer),
+        new components.State(container, timer, goals, settings),
+        new components.Scale(dom.find('.pa-timer-wrapper'), timer),
+        new components.Time(dom.find('.pa-timer-time'), timer, settings),
+        new components.Skip(dom.find('.pa-skip'), timer, goals),
+        new components.Goals(dom.find('.pa-goals'), goals, settings),
+        new components.TickTock(
+            timer, settings, new Audio('assets/sounds/tick.mp3')
+        ),
+        new components.Sound(
+            timer, settings, new Audio('assets/sounds/bell.mp3')
+        ),
+        new components.Favicon(dom.find('[rel=icon]'), timer, goals),
+        new components.Title(timer, goals),
+        new components.Notifications(timer, goals, settings),
+        new components.Settings(
+            dom.find('.pa-settings-button'),
+            dom.find('.pa-settings'),
+            container,
+            settings
+        ),
+        new components.Save(timer, goals)
+    ];
+
+    services.forEach(function (service) {
+        service.activate();
+    });
+</script>
+
+<script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter32028086 = new Ya.Metrika({ id:32028086, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script> <noscript><div><img src="https://mc.yandex.ru/watch/32028086" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+
+    </body>
+</html>
